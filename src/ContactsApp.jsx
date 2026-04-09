@@ -1,33 +1,29 @@
 import './App.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { ContactsSection } from './components/ContactsSection';
+import { ThemeContext } from './context/ThemeContext';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
 
 const family = [
-  {
-    name: 'Finn the Human'
-  },
-  {
-    name: 'Jake the Dog'
-  }
+  { name: 'Finn the Human' },
+  { name: 'Jake the Dog' }
 ];
 
 const friends = [
-  {
-    name: 'Marceline'
-  },
-  {
-    name: 'Princess Bubblegum'
-  }
+  { name: 'Marceline' },
+  { name: 'Princess Bubblegum' }
 ];
 
 const App = () => {
-  const theme = 'light';
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <div>
+    <div className={`theme-${theme}`}>
       <h1>Contacts</h1>
-      <ContactsSection contacts={family} name="Family" theme={theme} />
-      <ContactsSection contacts={friends} name="Friends" theme={theme} />
+      <ThemeSwitcher />
+
+      <ContactsSection contacts={family} name="Family" />
+      <ContactsSection contacts={friends} name="Friends" />
     </div>
   );
 };
